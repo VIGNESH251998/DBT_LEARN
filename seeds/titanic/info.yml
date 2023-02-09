@@ -1,0 +1,6 @@
+version : 2
+
+seeds:
+  - name: titanic
+    config:
+      alias: test_vig

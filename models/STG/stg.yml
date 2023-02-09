@@ -3,6 +3,8 @@ version: 2
 
 sources:
   - name: stg_industry
+    config:
+      enabled: True
     description: Source tables
     database: wisdomschema
     schema: industry
@@ -13,13 +15,18 @@ sources:
           - name : customerid
             tests:
               - unique
+    
       - name: salesorderheader
         description: industry order table
         loaded_at_field: orderdate
         freshness:
           warn_after: {count: 12,period: hour}
           error_after: {count: 24,period: hour}
-  
+        columns:
+          - name: orderdate
+            tests:
+              - not_null
+          
 
 
 models:
@@ -31,3 +38,6 @@ models:
         tests: 
           - unique
           - not_null
+
+
+  
